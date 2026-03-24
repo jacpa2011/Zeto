@@ -7,16 +7,16 @@ function Save() {
         localStorage.setItem('has_visited', 'true');
         saveitems('player.difficulty', player.difficulty); 
         saveitems('player.existencerank', player.existencerank);
-        saveitems('player.void.traces', player.void.traces);
-        saveitems('player.void.totaltraces', player.void.totaltraces);
+        saveitems('player.void.energy', player.void.energy);
+        saveitems('player.void.totalenergy', player.void.totalenergy);
         saveitems('player.void.action1.active', player.void.action1.active);
         saveitems('player.void.action1.progress', player.void.action1.progress); 
         saveitems('player.void.action1.totalpressed', player.void.action1.totalpressed); 
-        for(let i = 0; i < Object.keys(player.void.traceupgrades).length; i++) {
-            if (player.void.traceupgrades[i].level) saveitems(`player.void.traceupgrades[${i}].level`, player.void.traceupgrades[i].level);
-            saveitems(`player.void.traceupgrades[${i}].cost`, player.void.traceupgrades[i].cost);
-            if (player.void.traceupgrades[i].eff) saveitems(`player.void.traceupgrades[${i}].effect`, player.void.traceupgrades[i].effect);
-            if (player.void.traceupgrades[i].hasOwnProperty("bought")) saveitems(`player.void.traceupgrades[${i}].bought`, player.void.traceupgrades[i].bought);
+        for(let i = 0; i < Object.keys(player.void.energyupgrades).length; i++) {
+            if (player.void.energyupgrades[i].level) saveitems(`player.void.energyupgrades[${i}].level`, player.void.energyupgrades[i].level);
+            saveitems(`player.void.energyupgrades[${i}].cost`, player.void.energyupgrades[i].cost);
+            if (player.void.energyupgrades[i].eff) saveitems(`player.void.energyupgrades[${i}].effect`, player.void.energyupgrades[i].effect);
+            if (player.void.energyupgrades[i].hasOwnProperty("bought")) saveitems(`player.void.energyupgrades[${i}].bought`, player.void.energyupgrades[i].bought);
         }
     }
 }
@@ -45,16 +45,16 @@ function Get() {
     if (!isFirstVisit()) {
         player.difficulty = GetItems('player.difficulty', true);
         player.existencerank = GetItems('player.existencerank', false);
-        player.void.traces = GetItems('player.void.traces', true);
-        player.void.totaltraces = GetItems('player.void.totaltraces', true);
+        player.void.energy = GetItems('player.void.energy', true);
+        player.void.totalenergy = GetItems('player.void.totalenergy', true);
         player.void.action1.active = GetItems('player.void.action1.active', false);
         player.void.action1.progress = GetItems('player.void.action1.progress', true);
         player.void.action1.totalpressed = GetItems('player.void.action1.totalpressed', true);   
-        for(let i = 0; i < Object.keys(player.void.traceupgrades).length; i++) {
-            if (player.void.traceupgrades[i].level) player.void.traceupgrades[i].level = GetItems(`player.void.traceupgrades[${i}].level`, true);
-            player.void.traceupgrades[i].cost = GetItems(`player.void.traceupgrades[${i}].cost`, true);
-            if (player.void.traceupgrades[i].effect) player.void.traceupgrades[i].effect = GetItems(`player.void.traceupgrades[${i}].effect`, true);
-            if (player.void.traceupgrades[i].hasOwnProperty("bought")) player.void.traceupgrades[i].bought = GetItems(`player.void.traceupgrades[${i}].bought`, false);
+        for(let i = 0; i < Object.keys(player.void.energyupgrades).length; i++) {
+            if (player.void.energyupgrades[i].level) player.void.energyupgrades[i].level = GetItems(`player.void.energyupgrades[${i}].level`, true);
+            player.void.energyupgrades[i].cost = GetItems(`player.void.energyupgrades[${i}].cost`, true);
+            if (player.void.energyupgrades[i].effect) player.void.energyupgrades[i].effect = GetItems(`player.void.energyupgrades[${i}].effect`, true);
+            if (player.void.energyupgrades[i].hasOwnProperty("bought")) player.void.energyupgrades[i].bought = GetItems(`player.void.energyupgrades[${i}].bought`, false);
         }
     } else {
         Save()

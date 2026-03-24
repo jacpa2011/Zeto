@@ -11,7 +11,7 @@ const player = {
             active: false,
             totalpressed: new Decimal(0),
         },
-        traceupgrades: {
+        energyupgrades: {
             0: {
                 level: new Decimal(0),
                 cost: new Decimal(10),
@@ -28,11 +28,10 @@ const player = {
                 cost: new Decimal(5000),
             }
         },
-        totaltraces: new Decimal(0),
-        traces: new Decimal(0),
+        totalenergy: new Decimal(0),
+        energy: new Decimal(0),
 
-        pulses: new Decimal(0),
-        totalpulses: new Decimal(0),
+        rate: new Decimal(0.5),
         timepassed: new Decimal(0),
     }
 };
@@ -104,14 +103,14 @@ function Action(id) {
         player.void.action1.progress = new Decimal(0);
     }
 }
-function BuyTraceUp(id) {
-    const up = player.void.traceupgrades[id-1];
+function BuyEnergyUp(id) {
+    const up = player.void.energyupgrades[id-1];
     if (!up) return;
     if (up.bought) return;
     // check cost
-    if (!player.void.traces.gte(up.cost)) return;
+    if (!player.void.energy.gte(up.cost)) return;
     // pay cost
-    player.void.traces = player.void.traces.sub(up.cost);
+    player.void.energy = player.void.energy.sub(up.cost);
 
     // apply upgrade depending on type
     if ("bought" in up) {
